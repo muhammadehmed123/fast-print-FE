@@ -77,7 +77,7 @@ const Home = () => {
               color: '#f8c20a',
             }}
           >
-            Fast  Guys: changing
+            Fast Print Guys
           </h1>
 
           <h2
@@ -105,7 +105,7 @@ const Home = () => {
                 fontWeight: 500,
               }}
             >
-              Get an Instant Quote Now please chl ja 
+              Get an Instant Quote Now 
             </button>
 
             <h3
