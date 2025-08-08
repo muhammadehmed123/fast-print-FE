@@ -24,14 +24,19 @@ jobs:
         run: |
           rsync -avz --exclude 'node_modules' -e "ssh -o StrictHostKeyChecking=no" ./fastprint-frontend/ ubuntu@${{ secrets.EC2_HOST }}:~/frontend/FastPrint-Frontend/fastprint-frontend/
 
-      - name: Build and run Docker container on EC2
+      - name: Build and run Docker container on EC2 with Node 20
         run: |
           ssh ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
             set -e
             cd ~/frontend/FastPrint-Frontend/fastprint-frontend
             docker stop fastprint-frontend || true
             docker rm fastprint-frontend || true
+
+            # Update Dockerfile to use Node 20
+            sed -i 's|FROM node:18|FROM node:20|g' Dockerfile
+
             docker build --no-cache -t fastprint-frontend .
             docker run -d --name fastprint-frontend -p 4173:4173 fastprint-frontend
+
             echo "Deployment successful!"
           EOF
