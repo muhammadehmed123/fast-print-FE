@@ -1,0 +1,56 @@
+fastprint-frontend/
+│
+├── public/
+│   └── index.html
+│
+├── src/
+│   ├── assets/                  # Static images, icons
+│   │   └── logo.svg
+│   │
+│   ├── components/              # Reusable UI components
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   └── BookCard.jsx
+│
+│   ├── layouts/                 # Page layouts (with headers/sidebars)
+│   │   └── MainLayout.jsx
+│
+│   ├── pages/                   # All route-based pages
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx            # Module 1
+│   │   ├── Signup.jsx           # Module 1
+│   │   ├── ResetPassword.jsx    # Module 1
+│   │   ├── CreateBook.jsx       # Module 2
+│   │   ├── BookPreview.jsx      # Module 2
+│   │   ├── Pricing.jsx          # Module 3
+│   │   ├── Checkout.jsx         # Module 4
+│   │   ├── Orders.jsx           # Module 5
+│   │   ├── AdminDashboard.jsx   # Module 6
+│   │   ├── ManageUsers.jsx      # Module 6
+│   │   ├── ManageOrders.jsx     # Module 6
+│   │   └── Bookstore.jsx        # Module 9
+│
+│   ├── context/                 # Context providers (auth, global state)
+│   │   ├── AuthContext.jsx
+│   │   └── BookContext.jsx
+│
+│   ├── hooks/                   # Custom React hooks
+│   │   └── useAuth.js
+│
+│   ├── services/                # API calling functions
+│   │   ├── authService.js
+│   │   ├── bookService.js
+│   │   ├── orderService.js
+│   │   └── pricingService.js
+│
+│   ├── utils/                   # Helper functions
+│   │   └── validateForm.js
+│
+│   ├── App.jsx                  # App root with routing
+│   ├── index.js
+│   └── index.css
+│
+├── .env                         # Environment variables
+├── tailwind.config.js
+├── package.json
+└── README.md
