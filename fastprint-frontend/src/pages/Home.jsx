@@ -77,7 +77,7 @@ const Home = () => {
               color: '#f8c20a',
             }}
           >
-            Fast  Guys:
+            Fast  Guys: changing
           </h1>
 
           <h2
