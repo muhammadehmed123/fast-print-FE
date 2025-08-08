@@ -1,48 +1,16 @@
-name: 🚀 Deploy Frontend to EC2
+name: Debug Folder Structure
 
 on:
   push:
     branches:
-      - main  # Change if needed
+      - main
 
 jobs:
-  deploy:
-    name: Deploy FastPrint Frontend
+  debug:
     runs-on: ubuntu-latest
-
     steps:
-      - name: ⬇ Checkout Code
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: 🧐 List all files & folders in repo root
+      - name: List Files and Folders Recursively
         run: ls -R
-
-      - name: 📦 Set up SSH Key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-      - name: 📤 Copy Frontend Code to EC2 via rsync
-        run: |
-          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" ./fastprint-frontend/fastprint-frontend/ ubuntu@${{ secrets.EC2_HOST }}:~/frontend/FastPrint-Frontend/fastprint-frontend/
-
-      - name: 🚀 SSH into EC2 and Deploy Frontend
-        run: |
-          set -e  # Exit on any error
-          ssh ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-            set -e  # Exit on error inside SSH session
-            cd ~/frontend/FastPrint-Frontend/fastprint-frontend
-            echo "Stopping existing Docker container..."
-            docker stop fastprint-frontend || true
-            docker rm fastprint-frontend || true
-
-            echo "Building new Docker image..."
-            docker build --no-cache -t fastprint-frontend .
-
-            echo "Running Docker container..."
-            docker run -d --name fastprint-frontend -p 4173:4173 fastprint-frontend
-
-            echo "Deployment successful!"
-          EOF
