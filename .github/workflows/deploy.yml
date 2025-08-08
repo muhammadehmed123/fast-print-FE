@@ -14,6 +14,9 @@ jobs:
       - name: ⬇ Checkout Code
         uses: actions/checkout@v4
 
+      - name: 🧐 List all files & folders in repo root
+        run: ls -R
+
       - name: 📦 Set up SSH Key
         run: |
           mkdir -p ~/.ssh
