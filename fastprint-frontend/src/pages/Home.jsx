@@ -77,7 +77,7 @@ const Home = () => {
               color: '#f8c20a',
             }}
           >
-            Fast Print Guys
+            Fast Print Guy
           </h1>
 
           <h2
